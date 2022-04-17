@@ -1,5 +1,5 @@
 import numpy as np
-from neurogine import Neurogine
+from neurogine.neurogine import Neurogine
 ne = Neurogine([
         2,4,1
     ])
@@ -16,3 +16,8 @@ Output = np.array([
         [0]
     ])
 ne.train(Input,Output,10000,0.1) 
+
+print(ne.think(Input[0]))
+print(ne.think(Input[1]))
+print(ne.think(Input[2]))
+print(ne.think(Input[3]))
