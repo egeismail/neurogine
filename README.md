@@ -1,2 +1,2 @@
 # neurogine
- Simplest neural network viewer and creator for testing and developing
+ Simplest neural network creator library
