@@ -182,54 +182,7 @@ class Neurogine:
             for lid in reversed(range(0,len(self.synapses)-1)):
                 fD = fD.dot(self.synapses[lid+1].T)*self.sigmoid(layers[lid+1],True)
                 self.synapses[lid]+= layers[lid].T.dot(fD)*learningRate
-# class NeurogineGPU:
-#     def __init__(self, layers):
-#         tf.random.set_seed(1)
-#         if(len(layers)<2):
-#             raise Neuroerror("Layer count must greater then 2!")
-#         np.random.seed(1)
-#         self.layers = layers
-#         self.lastCalculatedLayer = []
-#         self.synapses = []
-#         for lid in range(0,len(layers)-1):
-#             nlayer = layers[lid]
-#             alayer = layers[lid+1]
-#             self.synapses.append(
-#                 tf.random.uniform([nlayer,alayer],-1,1)
-#             )
-#     def sigmoid(self,x,d=False):
-#         if(d): return tf.math.multiply(x,math.subtract(1,x)) 
-#         return tf.math.divide(1,tf.math.add(1,tf.math.exp(-x)))
-#     def getIOShape(self):
-#         return (self.layers[0],self.layers[-1])
-#     def think(self,Input,withStored=True):
-#         dF  = Input
-#         for item in range(0,len(self.synapses)):
-#             dF = self.sigmoid(tf.tensordot(dF,self.synapses[item],1)) 
-#         return dF
-#     def thinkLayered(self,Input):
-#         dF  = Input
-#         layers = [Input]
-#         for item in range(0,len(self.synapses)):
-#             dF = self.sigmoid(np.dot(dF,self.synapses[item])) 
-#             layers.append(dF)
-#         self.lastCalculatedLayer = layers
-#         return dF
-#     def train(self,X,y,iteration=1000,learningRate=0.6):
-#         with tf.Session() as sess:
-#             for it in range(0,iteration):
-#                 #think 
-#                 dF  = X
-#                 layers = [X]
-#                 for item in range(0,len(self.synapses)):
-#                     dF = self.sigmoid(np.dot(dF,self.synapses[item])) 
-#                     layers.append(dF)
-#                 Error = y-layers[-1]
-#                 fD = Error*self.sigmoid(layers[-1],True)
-#                 self.synapses[-1]+= layers[-2].T.dot(fD)*learningRate
-#                 for lid in reversed(range(0,len(self.synapses)-1)):
-#                     fD = fD.dot(self.synapses[lid+1].T)*self.sigmoid(layers[lid+1],True)
-#                     self.synapses[lid]+= layers[lid].T.dot(fD)*learningRate
+
 def main():
     import random
     vs = NeuroVisualizer()
